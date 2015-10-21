@@ -16,6 +16,4 @@ RSpec::Matchers.define :transform_to do |output, target|
   diffable
 end
 
-RSpec.configure do |config|
-  config.raise_errors_for_deprecations!
-end
+RSpec.configure(&:raise_errors_for_deprecations!)

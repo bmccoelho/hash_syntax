@@ -7,7 +7,7 @@ describe HashSyntax::Transformer do
     end
 
     it 'transforms all hashes in a block of code' do
-      input = %q{
+      input = '
 with_jumps_redirected(:break => ensure_body[1], :redo => ensure_body[1], :next => ensure_body[1],
                       :return => ensure_body[1], :rescue => ensure_body[1],
                       :yield_fail => ensure_body[1]) do
@@ -16,8 +16,8 @@ with_jumps_redirected(:break => ensure_body[1], :redo => ensure_body[1], :next =
                           current_rescue, current_yield_fail)
   walk_body_with_rescue_target(result, body, body_block, rescue_target, yield_fail_target)
 end
-}
-      output = %q{
+'
+      output = '
 with_jumps_redirected(break: ensure_body[1], redo: ensure_body[1], next: ensure_body[1],
                       return: ensure_body[1], rescue: ensure_body[1],
                       yield_fail: ensure_body[1]) do
@@ -26,12 +26,12 @@ with_jumps_redirected(break: ensure_body[1], redo: ensure_body[1], next: ensure_
                           current_rescue, current_yield_fail)
   walk_body_with_rescue_target(result, body, body_block, rescue_target, yield_fail_target)
 end
-}
+'
       expect(input).to transform_to(output, :"to-19")
     end
 
     it 'transforms all hashes in a block of code without minding tight spacing' do
-      input = %q{
+      input = '
 with_jumps_redirected(:break=>ensure_body[1], :redo=>ensure_body[1], :next=>ensure_body[1],
                       :return=>ensure_body[1], :rescue=>ensure_body[1],
                       :yield_fail=>ensure_body[1]) do
@@ -40,8 +40,8 @@ with_jumps_redirected(:break=>ensure_body[1], :redo=>ensure_body[1], :next=>ensu
                           current_rescue, current_yield_fail)
   walk_body_with_rescue_target(result, body, body_block, rescue_target, yield_fail_target)
 end
-}
-      output = %q{
+'
+      output = '
 with_jumps_redirected(break:ensure_body[1], redo:ensure_body[1], next:ensure_body[1],
                       return:ensure_body[1], rescue:ensure_body[1],
                       yield_fail:ensure_body[1]) do
@@ -50,10 +50,9 @@ with_jumps_redirected(break:ensure_body[1], redo:ensure_body[1], next:ensure_bod
                           current_rescue, current_yield_fail)
   walk_body_with_rescue_target(result, body, body_block, rescue_target, yield_fail_target)
 end
-}
+'
       expect(input).to transform_to(output, :"to-19")
     end
-
   end
 
   describe 'transforming from 1.9 to 1.8 syntax' do
@@ -62,7 +61,7 @@ end
     end
 
     it 'transforms all hashes in a block of code' do
-      input = %q{
+      input = '
 with_jumps_redirected(break: ensure_body[1], redo: ensure_body[1], next: ensure_body[1],
                       return: ensure_body[1], rescue: ensure_body[1],
                       yield_fail: ensure_body[1]) do
@@ -71,8 +70,8 @@ with_jumps_redirected(break: ensure_body[1], redo: ensure_body[1], next: ensure_
                           current_rescue, current_yield_fail)
   walk_body_with_rescue_target(result, body, body_block, rescue_target, yield_fail_target)
 end
-}
-      output = %q{
+'
+      output = '
 with_jumps_redirected(:break => ensure_body[1], :redo => ensure_body[1], :next => ensure_body[1],
                       :return => ensure_body[1], :rescue => ensure_body[1],
                       :yield_fail => ensure_body[1]) do
@@ -81,7 +80,7 @@ with_jumps_redirected(:break => ensure_body[1], :redo => ensure_body[1], :next =
                           current_rescue, current_yield_fail)
   walk_body_with_rescue_target(result, body, body_block, rescue_target, yield_fail_target)
 end
-}
+'
       expect(input).to transform_to(output, :"to-18")
     end
   end
