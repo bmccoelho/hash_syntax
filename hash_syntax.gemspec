@@ -21,10 +21,10 @@ the old and the new syntaxes."
   spec.require_paths = ['lib']
 
   spec.add_development_dependency 'bundler', '~> 1.3'
-  spec.add_development_dependency 'rake'
-  spec.add_development_dependency 'rspec', '>= 2.3.0'
-  spec.add_development_dependency 'yard', '>= 0'
+  spec.add_development_dependency 'rake', '~> 0'
+  spec.add_development_dependency 'rspec', '~> 2.3'
+  spec.add_development_dependency 'yard', '~> 0'
 
-  spec.add_dependency 'object_regex', '~> 1.0.1'
-  spec.add_dependency 'trollop', '~> 1.16.2'
+  spec.add_runtime_dependency 'object_regex', '~> 1.0', '>= 1.0.1'
+  spec.add_runtime_dependency 'trollop', '~> 1.16', '>= 1.16.2'
 end
